@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Buddy Finder helps you discover dogs, cats, and other pets available for adoption near you." />
+  <meta name="theme-color" content="#f6f2e9" />
+  <title>Buddy Finder — Find your new best friend</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Buddy Finder home">
+      <span class="brand-mark" aria-hidden="true">🐾</span>
+      <span>Buddy Finder</span>
+    </a>
+    <a class="header-link" href="#how-it-works">How it works</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">ADOPT • LOVE • REPEAT</p>
+        <h1>Your new best friend might be <span>right around the corner.</span></h1>
+        <p class="hero-sub">Search adoptable dogs, cats, and other animals near you — all in one simple place.</p>
+      </div>
+
+      <form id="searchForm" class="search-panel">
+        <fieldset class="pet-tabs" aria-label="Choose a pet type">
+          <label><input type="radio" name="petType" value="Dog" checked /><span>🐶 Dogs</span></label>
+          <label><input type="radio" name="petType" value="Cat" /><span>🐱 Cats</span></label>
+          <label><input type="radio" name="petType" value="Other" /><span>🐰 Other</span></label>
+        </fieldset>
+
+        <div id="otherTypeWrap" class="field hidden">
+          <label for="otherType">What kind?</label>
+          <select id="otherType">
+            <option value="Rabbit">Rabbits</option><option value="Small & Furry">Small & furry</option><option value="Bird">Birds</option><option value="Horse">Horses</option><option value="Scales, Fins & Other">Reptiles, fish & other</option><option value="Barnyard">Barnyard</option>
+          </select>
+        </div>
+
+        <div class="search-row">
+          <div class="field location-field"><label for="location">Your location</label><div class="input-with-button"><input id="location" name="location" type="text" placeholder="City, State or ZIP" autocomplete="postal-code" required /><button id="geoButton" class="icon-button" type="button" title="Use my current location" aria-label="Use my current location">◎</button></div></div>
+          <div class="field distance-field"><label for="distance">Within</label><select id="distance" name="distance"><option value="10">10 miles</option><option value="25" selected>25 miles</option><option value="50">50 miles</option><option value="100">100 miles</option><option value="500">Anywhere nearby</option></select></div>
+          <button class="primary-button" type="submit"><span>Find buddies</span><span aria-hidden="true">→</span></button>
+        </div>
+        <p id="formMessage" class="form-message" role="status"></p>
+      </form>
+
+      <div class="hero-pets" aria-hidden="true"><div class="pet-bubble dog">🐕</div><div class="pet-bubble cat">🐈</div><div class="pet-bubble rabbit">🐇</div></div>
+    </section>
+
+    <section id="resultsSection" class="results-section hidden">
+      <div class="results-heading"><div><p class="eyebrow">AVAILABLE NOW</p><h2 id="resultsTitle">Buddies near you</h2></div><p id="resultsCount" class="results-count"></p></div>
+      <div id="loading" class="loading hidden" aria-live="polite"><div class="spinner"></div><p>Sniffing around for buddies…</p></div>
+      <div id="emptyState" class="empty-state hidden"><div class="empty-icon">🐾</div><h3>No buddies found in that search.</h3><p>Try increasing the distance or choosing another pet type.</p></div>
+      <div id="errorState" class="error-state hidden"></div>
+      <div id="petGrid" class="pet-grid"></div>
+      <div class="load-more-wrap"><button id="loadMore" class="secondary-button hidden" type="button">Show more buddies</button></div>
+    </section>
+
+    <section id="how-it-works" class="how-section">
+      <div class="section-intro"><p class="eyebrow">HOW IT WORKS</p><h2>Three steps. One very good decision.</h2></div>
+      <div class="steps">
+        <article><span>01</span><h3>Tell us where you are</h3><p>Enter a city or ZIP code, or use your current location.</p></article>
+        <article><span>02</span><h3>Pick your kind of buddy</h3><p>Search dogs, cats, rabbits, birds, and more.</p></article>
+        <article><span>03</span><h3>Meet your match</h3><p>Open a listing to contact the shelter or rescue handling the adoption.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div><a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">🐾</span><span>Buddy Finder</span></a><p>Helping good animals find good people.</p></div><p class="powered">Adoption listings powered by <a href="https://www.petfinder.com/" target="_blank" rel="noopener noreferrer">Petfinder</a>.</p></footer>
+
+  <template id="petCardTemplate"><article class="pet-card"><a class="pet-photo-link" target="_blank" rel="noopener noreferrer"><div class="pet-photo-wrap"><img class="pet-photo" alt="" loading="lazy" /><div class="photo-placeholder" aria-hidden="true">🐾</div><span class="pet-distance"></span></div></a><div class="pet-card-body"><div class="pet-card-top"><div><h3 class="pet-name"></h3><p class="pet-breed"></p></div><span class="pet-sex"></span></div><div class="pet-meta"><span class="pet-age"></span><span class="pet-size"></span></div><p class="pet-location"></p><a class="meet-button" target="_blank" rel="noopener noreferrer">Meet this buddy →</a></div></article></template>
+  <script src="/app.js" defer></script>
+</body>
+</html>
